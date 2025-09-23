@@ -915,7 +915,7 @@ Transform:
   m_GameObject: {fileID: 2109523934}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.47, y: 0, z: 0}
+  m_LocalPosition: {x: -3, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 6.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -934,9 +934,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
-  rightLimit: 3
-  leftLimit: -3
-  speed: 3
+  rightLimit: 6
+  leftLimit: -6
+  speed: 8
   beforePaprika: {fileID: 590740017}
   afterPaprika: {fileID: 1922237778}
 --- !u!1660057539 &9223372036854775807
