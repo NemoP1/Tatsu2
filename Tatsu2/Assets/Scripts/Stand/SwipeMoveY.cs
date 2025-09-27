@@ -53,19 +53,17 @@ public class SwipeMoveY : MonoBehaviour
         // --- 移動判定 ---
         if (transform.position != lastPos)
         {
-            // 動いている
             stillTimer = 0f;
 
             if (moveAudio != null && !moveAudio.isPlaying)
             {
-                moveAudio.Play(); // 動き始めた瞬間に再生
+                moveAudio.Play(); // 動き始めた瞬間に効果音再生
             }
         }
         else
         {
-            // 静止中
             stillTimer += Time.deltaTime;
-            if (stillTimer >= 1f) // 1秒以上止まったら停止
+            if (stillTimer >= 1f) // 1秒以上止まったら効果音停止
             {
                 if (moveAudio != null && moveAudio.isPlaying)
                 {
