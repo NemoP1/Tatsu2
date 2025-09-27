@@ -12,8 +12,10 @@ public class CutLineManager : MonoBehaviour
 
     [SerializeField] private GameObject beforePaprika;
     [SerializeField] private GameObject afterPaprika;
+    [SerializeField] private AudioSource cutSE;
 
     private bool isStopped = false;
+    private bool hasPlayed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -41,21 +43,26 @@ public class CutLineManager : MonoBehaviour
         }
         
 
-        // クリック検知
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !hasPlayed)
         {
-            // pos.x が -0.1 ～ 0.1 の範囲に入っているか判定
             if (pos.x > -0.2f && pos.x < 0.2f)
             {
-                isStopped = true; // 停止
+                isStopped = true;
+                hasPlayed = true;
+                cutSE.PlayOneShot(cutSE.clip);
+                Invoke(nameof(DisableAudioSource), cutSE.clip.length); // 再生が終わったら AudioSource を無効化
                 beforePaprika.SetActive(false);
                 afterPaprika.SetActive(true);
-                Invoke("ChangeScene", 2.0f); // 2秒後にChangeSceneを呼び出す
+                Invoke("ChangeScene", 2.0f);
             }
         }
     }
     private void ChangeScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("StandScene");
+    }
+    private void DisableAudioSource()
+    {
+        cutSE.enabled = false;
     }
 }
