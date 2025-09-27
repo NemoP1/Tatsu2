@@ -14,8 +14,14 @@ public class SwipeMoveY : MonoBehaviour
 
     [SerializeField] private float moveDuration = 0.3f; // アニメーション時間
     
+    [SerializeField] private AudioSource moveAudio;
+    private Vector3 lastPos;         // 前フレームの位置
+    private float stillTimer = 0f;   // 静止している時間を計測
+
     void Start()
     {
+        moveAudio.loop = true; // 常にループ再生可能に
+        lastPos = transform.position;
         StartCoroutine(TimerCoroutine()); //タイマー開始
     }
 
@@ -43,6 +49,32 @@ public class SwipeMoveY : MonoBehaviour
                          .SetEase(Ease.OutCubic);
             }
         }
+
+        // --- 移動判定 ---
+        if (transform.position != lastPos)
+        {
+            // 動いている
+            stillTimer = 0f;
+
+            if (moveAudio != null && !moveAudio.isPlaying)
+            {
+                moveAudio.Play(); // 動き始めた瞬間に再生
+            }
+        }
+        else
+        {
+            // 静止中
+            stillTimer += Time.deltaTime;
+            if (stillTimer >= 1f) // 1秒以上止まったら停止
+            {
+                if (moveAudio != null && moveAudio.isPlaying)
+                {
+                    moveAudio.Stop();
+                }
+            }
+        }
+
+        lastPos = transform.position;
     }
 
     private IEnumerator TimerCoroutine()
