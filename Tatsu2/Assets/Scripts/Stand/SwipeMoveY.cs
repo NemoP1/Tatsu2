@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SwipeMoveY : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class SwipeMoveY : MonoBehaviour
     private float moveDistanceY = 0f;
     private bool isSwiping = false;
     private bool isSceneEnd = false;
-
+    private bool isClear = false;
+    [SerializeField] private TextMeshProUGUI finishText;
     [SerializeField] private float moveDuration = 0.3f; // アニメーション時間
     
     [SerializeField] private AudioSource moveAudio;
@@ -20,6 +22,7 @@ public class SwipeMoveY : MonoBehaviour
 
     void Start()
     {
+        finishText.text = "10秒以内にすすりきれ！";
         moveAudio.loop = true; // 常にループ再生可能に
         lastPos = transform.position;
         StartCoroutine(TimerCoroutine()); //タイマー開始
@@ -28,7 +31,7 @@ public class SwipeMoveY : MonoBehaviour
     void Update()
     {
         Vector2 pos = transform.position;
-        if(isSceneEnd == true)
+        if(isSceneEnd == true || isClear == true)
         {
             return;
         }
@@ -80,5 +83,13 @@ public class SwipeMoveY : MonoBehaviour
         yield return new WaitForSeconds(10f); //10秒待機
         isSceneEnd = true;
         SceneManager.LoadScene("DragonScene");
+    }
+
+    // カメラから完全に見えなくなった瞬間に呼ばれる
+    private void OnBecameInvisible()
+    {
+        finishText.text = "天才！";
+        moveAudio.Stop();
+        isClear = true;
     }
 }

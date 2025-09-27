@@ -6,7 +6,7 @@ using TMPro;
 public class HitController : MonoBehaviour
 {
     [SerializeField] private GameObject finishUI;
-    [SerializeField] private GameObject failUI; // 追加する
+    [SerializeField] private GameObject failUI;
     [SerializeField] private GameObject cloudEffect;
     [SerializeField] private TextMeshProUGUI coinText;
     private int coinCount = 0;

@@ -309,7 +309,6 @@ GameObject:
   m_Component:
   - component: {fileID: 252728089}
   - component: {fileID: 252728088}
-  - component: {fileID: 252728091}
   - component: {fileID: 252728092}
   m_Layer: 0
   m_Name: Men
@@ -385,19 +384,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &252728091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 252728087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5160a590a9d1dae41b873ced21c3c4c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishText: {fileID: 702937077}
 --- !u!114 &252728092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363a49a5f130404479c2eec5e0b74eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finishText: {fileID: 702937077}
   moveDuration: 0.3
   moveAudio: {fileID: 696997941}
 --- !u!1 &395170420
